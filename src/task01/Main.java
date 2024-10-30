@@ -12,14 +12,15 @@ public class Main {
 
 		// System.out.printf("hello, world\n");
 		String fileName = "day.csv";
+		if(args.length>0){
+			fileName = args[0];
+		}
 
 		try {
 
-			ArrayList<String> list = new ArrayList<>();
-
 			System.out.println(">>>>" + fileName);
 			Map<Integer, NewBikeEntry> bikeMap = parseCSV(fileName);
-			System.out.println(bikeMap.size());
+			 
 
 			List<Entry<Integer, NewBikeEntry>> getHighest = bikeMap.entrySet().stream()
 					.filter(p -> !Double.isNaN(p.getValue().getRegistered())) // Filter out NaN values for registered
@@ -131,18 +132,39 @@ public class Main {
 				// Total
 				int sum = highestRatedApp.getValue().getRegistered() + highestRatedApp.getValue().getCasual();
 
-				list.add(" The " + pos + " recorded number of cyclists was in " + s + "," + "on a " + d +
-						" in the month of " + m + ". " + "There were a total of " + sum + " cylists.");
+
+				//Weather
+				String w = Integer.toString(highestRatedApp.getValue().getWeather());
+
+				if(w.equals("1")){
+					w = "Clear, Few clouds, Partly cloudy, Partly cloudy";
+				} else if(w.equals("2")){
+					w = "Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist";
+				} else if(w.equals("3")){
+					w = "Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds";
+				} else {
+					w = "Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog";
+				}
+
+				//Holiday 
+				String h = Integer.toString(highestRatedApp.getValue().getWeather());
+
+				if(h.equals("0")){
+					h = "not a holiday";
+				} else {
+					h = "holiday";
+				}
+
+				System.out.println(" The " + pos + " recorded number of cyclists was in " + s + "," + "on a " + d +
+						" in the month of " + m + ". " + "There were a total of " + sum + " cylists." + "the weather was " + w + ". "
+						+ d + " was " + h);
 
 				System.out.println();
 
 				position--;
 
 			}
-
-			for (String out : list) {
-				System.out.println(out);
-			}
+ 
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -209,7 +231,7 @@ public class Main {
 
 	}
 
-	// This manually parse a csv line, handling quoted fields correctly
+	 // This manually parse a csv line, handling quoted fields correctly
 	public static String[] parseLine(String line) {
 		List<String> result = new ArrayList<>();
 		StringBuilder currentField = new StringBuilder();
