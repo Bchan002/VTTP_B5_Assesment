@@ -71,7 +71,7 @@ public class TicTacToe {
         
         // Check rows
         for(int i=0; i<newBoard.length;i++){
-            if(newBoard[i][0]!='-' && newBoard[i][0]==newBoard[i][1] 
+            if(newBoard[i][0]!='.' && newBoard[i][0]==newBoard[i][1] 
                 && newBoard[i][1] == newBoard[i][2]){
                     if(newBoard[i][0] =='X'){
                         return "Player 1 has won!";
@@ -83,7 +83,7 @@ public class TicTacToe {
         
         //Check columns 
         for(int j =0; j<newBoard[0].length;j++){
-            if(newBoard[0][j]!= '-' && newBoard[0][j]==newBoard[1][j] &&
+            if(newBoard[0][j]!= '.' && newBoard[0][j]==newBoard[1][j] &&
                 newBoard[1][j] == newBoard[2][j]){
                     if(newBoard[0][j] == 'X'){
                         return "Player 1 has won!";
@@ -94,7 +94,7 @@ public class TicTacToe {
         }
 
         //Check for diagonals
-        if (newBoard[1][1] != '-') {
+        if (newBoard[1][1] != '.') {
             if ((newBoard[0][0] == newBoard[1][1] && newBoard[1][1] == newBoard[2][2]) ||
                 (newBoard[0][2] == newBoard[1][1] && newBoard[1][1] == newBoard[2][0])) {
                 if (newBoard[1][1] == 'X') {
