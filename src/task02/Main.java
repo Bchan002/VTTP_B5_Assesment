@@ -14,10 +14,12 @@ public class Main {
 	 
 		//System.out.printf("hello, world\n");
 		 //Read the file
-		 String fileName = "board0.txt";
-
+		//String fileName = "figure1.txt";
+		String fileName ="";
 		if(args.length>0){
 			fileName = args[0];
+		} else{
+			System.out.println("Error");
 		}
 
 		try{

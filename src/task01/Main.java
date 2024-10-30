@@ -227,7 +227,8 @@ public class Main {
 			}
 
 			br.close();
-			
+			reader.close();
+
 
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();

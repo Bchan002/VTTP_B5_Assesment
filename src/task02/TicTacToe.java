@@ -182,7 +182,7 @@ public class TicTacToe {
     
                     int checkUtility= miniMax(cloneBoard, true);  
             
-                    String result;
+                    String result="";
                     //Player 2 win 
                     if (checkUtility == 1) { 
                         result = "utility = -1";
@@ -190,7 +190,7 @@ public class TicTacToe {
                     } else if (checkUtility == -1) {
                         result = "utility = 1";
                     //if draw
-                    } else {
+                    } else if(checkUtility ==0) {
                         result = "utility = 0";
                     }
     
