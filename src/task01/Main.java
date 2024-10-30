@@ -23,7 +23,7 @@ public class Main {
 			 
 
 			List<Entry<Integer, NewBikeEntry>> getHighest = bikeMap.entrySet().stream()
-					.filter(p -> !Double.isNaN(p.getValue().getRegistered())) // Filter out NaN values for registered
+					.filter(p -> !Double.isNaN(p.getValue().getRegistered()))  
 					.sorted((s1, s2) -> {
 						// Calculate totals for both entries
 						int sum1 = s1.getValue().getRegistered() + s1.getValue().getCasual();
@@ -33,16 +33,19 @@ public class Main {
 						int compareSum =0;
 						int compareReg = 0;
 						int compareCasual =0;
+						//Comparing bewteen totals of the two entries;
 						compareSum = Double.compare(sum2,sum1);
 						if(compareSum!=0){
 							return compareSum;
 						}
 
+						//Then if the totals are similar, compare the registered
 						compareReg = Double.compare(s2.getValue().getRegistered(), s1.getValue().getRegistered());
 						if(compareReg!=0){
 							return compareReg;
 						}
 
+						//If registered cyclists same, then compare the casual ones
 						compareCasual = Double.compare(s2.getValue().getCasual(), s2.getValue().getCasual());
 						return compareCasual;
 							
@@ -183,7 +186,8 @@ public class Main {
 			Reader reader = new FileReader(file);
 			BufferedReader br = new BufferedReader(reader);
 
-			String[] headers = parseLine(br.readLine()); // skip the header line
+			String deleteHeaders = br.readLine();
+			String[] headers = deleteHeaders.split(","); // skip the header line
 			String line;
 			try {
 
@@ -230,33 +234,6 @@ public class Main {
 		return bikeMapper;
 
 	}
-
-	 // This manually parse a csv line, handling quoted fields correctly
-	public static String[] parseLine(String line) {
-		List<String> result = new ArrayList<>();
-		StringBuilder currentField = new StringBuilder();
-		boolean insideQuotes = false;
-
-		for (int i = 0; i < line.length(); i++) {
-			char currentChar = line.charAt(i);
-
-			if (currentChar == '\"') {
-				// Toggle insideQuotes when encountering a quote character
-				insideQuotes = !insideQuotes;
-			} else if (currentChar == ',' && !insideQuotes) {
-				// If we encounter a comma outside of quotes, it's the end of a field
-				result.add(currentField.toString().trim());
-				currentField.setLength(0); // Reset the field buffer
-			} else {
-				// Add the character to the current field
-				currentField.append(currentChar);
-			}
-		}
-
-		// Add the last field to the result (since the line might not end with a comma)
-		result.add(currentField.toString().trim());
-
-		return result.toArray(new String[0]);
-	}
+	 
 
 }
