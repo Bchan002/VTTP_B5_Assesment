@@ -220,9 +220,14 @@ public class Main {
 
 				}
 
+			
+
 			} catch (IOException io) {
 				io.printStackTrace();
 			}
+
+			br.close();
+			
 
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();
