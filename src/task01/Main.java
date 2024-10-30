@@ -150,7 +150,7 @@ public class Main {
 				}
 
 				//Holiday 
-				String h = Integer.toString(highestRatedApp.getValue().getWeather());
+				String h = Integer.toString(highestRatedApp.getValue().getHoliday());
 
 				if(h.equals("0")){
 					h = "not a holiday";
@@ -158,9 +158,9 @@ public class Main {
 					h = "holiday";
 				}
 
-				System.out.println(" The " + pos + " recorded number of cyclists was in " + s + "," + "on a " + d +
-						" in the month of " + m + ". " + "There were a total of " + sum + " cylists." + "the weather was " + w + ". "
-						+ d + " was " + h);
+				System.out.println("The " + pos +  " (position)" +" recorded number of cyclists was in " + s +" (season) " + "," + "on a " + d + " (day)" +
+						" in the month of " + m + " (month)" + ". " + "\n" + "There were a total of " + sum + " (total) cylists." + " The weather was " + w + ". "
+						+"\n" + d + " (day) was " + h + " (holiday).");
 
 				System.out.println();
 
